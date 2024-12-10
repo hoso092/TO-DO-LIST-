@@ -38,14 +38,7 @@ class ToDoApp(Task):
         tk.Button(root, text="Add Task", fg="black", bg="green",command=self.addTask).pack(pady=5)
         tk.Button(root, text="Delete Task", fg="black", bg="red",command=self.deleteTask).pack(pady=5)
         tk.Button(root, text="Edit Task", fg="black", bg="white", command=self.editTask).pack(pady=5)
-        tk.Button(root, text="Exit", command=root.quit).pack(pady=5)
-
-    def file_handling(self):
-        with open('Tasks' ,'a') as fileobject:
-            for ListItem in self.task_listbox :
-                fileobject.write(str(ListItem)+':')
-            fileobject.write('\n')
-        return
+        tk.Button(root, text="Exit", command=self.save_and_exit).pack(pady=5)
 
     def show_popup(self, message):
         # Create a new window (popup)
@@ -81,6 +74,11 @@ class ToDoApp(Task):
         self.task_listbox.insert(tk.END, f"Task: {new_Task.TaskDescription} - Due Time: {new_Task.Due_Date} - Priority: {new_Task.Priority} ")
         print("task added successfully")
         return
+    def Store_in_txt(self):
+        with open('Tasks.txt','a') as fileobject:
+            for task in self.taskslist:
+                fileobject.write(f"{task}\n")
+            fileobject.write("END_OF_SESSION\n")
 
     def deleteTask(self):
         selected_task_index = self.task_listbox.curselection()
@@ -143,8 +141,12 @@ class ToDoApp(Task):
                                          f"Task:{new_Task.TaskDescription} - Due Time: {new_Task.Due_Date} - Priority {new_Task.Priority} ")
             messagebox.showinfo("Task Edited", "The task has been edited successfully.")
 
-        save_button = tk.Button(self.root, text="Save Edit", command=Save_TheTask, fg="black", bg="blue")
+        save_button = tk.Button(self.root, text="Save Edit", command=Save_TheTask, fg="white", bg="blue")
         save_button.pack(pady=5)
+
+    def save_and_exit(self):
+        self.Store_in_txt()  # Save tasks before exiting
+        self.root.quit()
 
 if __name__ == "__main__":
     root = tk.Tk()
