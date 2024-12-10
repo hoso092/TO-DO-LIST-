@@ -81,12 +81,6 @@ class ToDoApp(Task):
         self.task_listbox.insert(tk.END, f"Task: {new_Task.TaskDescription} - Due Time: {new_Task.Due_Date} - Priority: {new_Task.Priority} ")
         print("task added successfully")
         return
-    # def listAll(self):
-    #     with open('Tasks' ,'r') as fileobject:
-    #         data=fileobject.readlines()
-    #         for line in data:
-    #             print(line, end='')
-    #         return
 
     def deleteTask(self):
         selected_task_index = self.task_listbox.curselection()
@@ -151,41 +145,6 @@ class ToDoApp(Task):
 
         save_button = tk.Button(self.root, text="Save Edit", command=Save_TheTask, fg="black", bg="blue")
         save_button.pack(pady=5)
-
-
-        # choice='task 3'#input("Please Enter Task Name : ")
-        # with open('Tasks' ,'r') as fileobject:
-        #     data=fileobject.readlines()
-        #     for line in data:
-        #         item=line.split(':',3)
-        #         if item[0] == choice:
-        #             data.remove(line)
-        #             Task.file_handling(self,data)
-        #             print("task deleted successfully")
-        #             break
-        #     print("task Not Found")
-
-
-
-    # def UpdateTask(self):
-    #     choice='task 9'#input("Please Enter Task Name : ")
-    #     with open('Tasks' ,'r') as fileobject:
-    #         data=fileobject.readlines()
-    #         for line in data:
-    #             item=line.split(':',3)
-    #             if item[0] == choice:
-    #                 data.remove(line)
-    #                 ToDoList.file_handling(self,data)
-    #                 break
-
-
-
-
-
-
-# for num in range(1,11):
-#     task1 = Task(f'task {num}',num,num)
-#     Task.addTask(task1)
 
 if __name__ == "__main__":
     root = tk.Tk()
